@@ -1,1 +1,115 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>משימת מספרים</title>
 
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#fff7d6;
+  text-align:center;
+  padding:16px;
+}
+h1{font-size:34px;color:#d6a400;}
+.instructions{
+  background:white;
+  padding:16px;
+  border-radius:18px;
+  border:3px solid #111;
+  font-size:19px;
+  line-height:1.6;
+}
+button{
+  background:#f5b400;
+  color:#111;
+  font-size:20px;
+  font-weight:bold;
+  padding:12px 18px;
+  margin:6px;
+  border:none;
+  border-radius:12px;
+}
+.board{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  max-width:430px;
+  margin:20px auto;
+  background:white;
+  padding:14px;
+  border-radius:20px;
+  border:4px solid #111;
+}
+.num{
+  font-size:34px;
+  font-weight:bold;
+  padding:16px 6px;
+  border:3px solid #111;
+  border-radius:14px;
+  background:#fff;
+}
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<h1>🔢 משימת המספרים</h1>
+
+<div class="instructions">
+  <b>איך משחקים?</b><br><br>
+  סרקו את הברקוד והניחו את הנייד רחוק מהקבוצות.<br>
+  בספירת <b>"צא!"</b> נציג ראשון מכל קבוצה רץ אל המספרים, משנן כמה שניתן וחוזר.<br>
+  הנציג רושם על הדף את המספרים שזכר, ורק אז הנציג הבא רשאי לרוץ.<br><br>
+  🏆 הקבוצה הראשונה שמעתיקה נכון את כל 12 המספרים — מנצחת!
+</div>
+
+<h2>בחרו לוח מספרים:</h2>
+
+<div>
+  <button onclick="showBoard(0)">לוח 1</button>
+  <button onclick="showBoard(1)">לוח 2</button>
+  <button onclick="showBoard(2)">לוח 3</button>
+  <button onclick="showBoard(3)">לוח 4</button>
+  <button onclick="showBoard(4)">לוח 5</button>
+  <button onclick="showBoard(5)">לוח 6</button>
+  <button onclick="showBoard(6)">לוח 7</button>
+  <button onclick="showBoard(7)">לוח 8</button>
+  <button onclick="showBoard(8)">לוח 9</button>
+  <button onclick="showBoard(9)">לוח 10</button>
+</div>
+
+<div class="board hidden" id="board"></div>
+
+<script>
+const boards = [
+  [12,45,78,23,56,89,34,67,91,25,48,70],
+  [14,28,39,51,63,72,84,95,16,27,38,49],
+  [11,22,33,44,55,66,77,88,99,10,20,30],
+  [17,31,46,52,68,74,83,90,13,29,57,61],
+  [21,42,63,84,15,36,57,78,19,40,62,93],
+  [24,35,46,57,68,79,80,91,12,23,34,45],
+  [18,26,37,49,50,61,73,82,94,15,27,39],
+  [32,64,16,48,25,75,35,85,45,95,55,65],
+  [13,24,35,46,57,68,79,81,92,14,25,36],
+  [10,29,38,47,56,65,74,83,92,21,30,49]
+];
+
+function showBoard(index){
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+  board.classList.remove("hidden");
+
+  boards[index].forEach(num => {
+    const div = document.createElement("div");
+    div.className = "num";
+    div.innerText = num;
+    board.appendChild(div);
+  });
+}
+</script>
+
+</body>
+</html>
