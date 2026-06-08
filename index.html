@@ -12,7 +12,12 @@ body{
   text-align:center;
   padding:16px;
 }
-h1{font-size:34px;color:#d6a400;}
+
+h1{
+  font-size:34px;
+  color:#d6a400;
+}
+
 .instructions{
   background:white;
   padding:16px;
@@ -21,16 +26,7 @@ h1{font-size:34px;color:#d6a400;}
   font-size:19px;
   line-height:1.6;
 }
-button{
-  background:#f5b400;
-  color:#111;
-  font-size:20px;
-  font-weight:bold;
-  padding:12px 18px;
-  margin:6px;
-  border:none;
-  border-radius:12px;
-}
+
 .board{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -42,15 +38,15 @@ button{
   border-radius:20px;
   border:4px solid #111;
 }
+
 .num{
-  font-size:34px;
+  font-size:30px;
   font-weight:bold;
-  padding:16px 6px;
+  padding:18px 6px;
   border:3px solid #111;
   border-radius:14px;
   background:#fff;
 }
-.hidden{display:none;}
 </style>
 </head>
 
@@ -66,49 +62,36 @@ button{
   🏆 הקבוצה הראשונה שמעתיקה נכון את כל 12 המספרים — מנצחת!
 </div>
 
-<h2>בחרו לוח מספרים:</h2>
-
-<div>
-  <button onclick="showBoard(0)">לוח 1</button>
-  <button onclick="showBoard(1)">לוח 2</button>
-  <button onclick="showBoard(2)">לוח 3</button>
-  <button onclick="showBoard(3)">לוח 4</button>
-  <button onclick="showBoard(4)">לוח 5</button>
-  <button onclick="showBoard(5)">לוח 6</button>
-  <button onclick="showBoard(6)">לוח 7</button>
-  <button onclick="showBoard(7)">לוח 8</button>
-  <button onclick="showBoard(8)">לוח 9</button>
-  <button onclick="showBoard(9)">לוח 10</button>
-</div>
-
-<div class="board hidden" id="board"></div>
+<div class="board" id="board"></div>
 
 <script>
 const boards = [
-  [12,45,78,23,56,89,34,67,91,25,48,70],
-  [14,28,39,51,63,72,84,95,16,27,38,49],
-  [11,22,33,44,55,66,77,88,99,10,20,30],
-  [17,31,46,52,68,74,83,90,13,29,57,61],
-  [21,42,63,84,15,36,57,78,19,40,62,93],
-  [24,35,46,57,68,79,80,91,12,23,34,45],
-  [18,26,37,49,50,61,73,82,94,15,27,39],
-  [32,64,16,48,25,75,35,85,45,95,55,65],
-  [13,24,35,46,57,68,79,81,92,14,25,36],
-  [10,29,38,47,56,65,74,83,92,21,30,49]
+  [247, 583, 914, 368, 725, 491, 836, 152, 679, 248, 915, 734],
+  [318, 642, 759, 184, 526, 973, 407, 861, 295, 630, 748, 519],
+  [135, 246, 357, 468, 579, 680, 791, 802, 913, 124, 235, 346],
+  [902, 417, 638, 159, 724, 385, 846, 271, 593, 760, 128, 439],
+  [111, 222, 333, 444, 555, 666, 777, 888, 999, 123, 456, 789],
+  [214, 389, 572, 846, 135, 697, 420, 753, 981, 268, 504, 319],
+  [609, 718, 827, 936, 145, 254, 363, 472, 581, 690, 809, 918],
+  [321, 654, 987, 210, 543, 876, 109, 432, 765, 198, 531, 864],
+  [147, 258, 369, 480, 591, 602, 713, 824, 935, 146, 257, 368],
+  [731, 284, 695, 148, 562, 973, 306, 817, 429, 650, 781, 234]
 ];
 
-function showBoard(index){
+function showRandomBoard(){
+  const randomIndex = Math.floor(Math.random() * boards.length);
+  const selectedBoard = boards[randomIndex];
   const board = document.getElementById("board");
-  board.innerHTML = "";
-  board.classList.remove("hidden");
 
-  boards[index].forEach(num => {
+  selectedBoard.forEach(num => {
     const div = document.createElement("div");
     div.className = "num";
     div.innerText = num;
     board.appendChild(div);
   });
 }
+
+showRandomBoard();
 </script>
 
 </body>
